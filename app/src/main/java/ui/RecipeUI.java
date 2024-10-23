@@ -1,6 +1,8 @@
 package ui;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,7 +64,26 @@ public class RecipeUI {
      * RecipeFileHandlerから読み込んだレシピデータを整形してコンソールに表示します。
      */
     private void displayRecipes() {
+        RecipeFileHandler recipeFileHandler = new RecipeFileHandler(); // RecipeFileHandlerのインスタンス作成
+        ArrayList<String> recipes = recipeFileHandler.readRecipes();// RecipeFileHandlerのインスタンス作成
 
+          // 読み込んだレシピデータが空の場合の処理
+        if (recipes.isEmpty()) {
+            System.out.println("No recipes available.");
+            return;
+        }
+
+        // レシピデータの表示
+        System.out.println("Recipes:");
+        System.out.println("-----------------------------------");
+        for (String recipe : recipes) {
+            // レシピを整形して表示
+            String[] pairs = data.asplit(",");
+            String recipeName = parts[0].recipe(); // レシピ名
+            String ingredients = parts[1];
+            System.out.println(recipe);
+            System.out.println("-----------------------------------");
+        }
     }
 
     /**
@@ -72,6 +93,10 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void addNewRecipe() throws IOException {
+        System.out.print("Enter recipe name: ");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+
+        System.out.print("Enter main ingredients (comma separated): ");
 
     }
 
@@ -82,7 +107,8 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void searchRecipe() throws IOException {
-
+        String recipe = "";
+        String ingredients = "";
     }
 
 }
