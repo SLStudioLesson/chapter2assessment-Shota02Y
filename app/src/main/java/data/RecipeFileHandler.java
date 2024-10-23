@@ -52,22 +52,14 @@ public class RecipeFileHandler {
      */
      //
     public void addRecipe(String recipeName, String ingredients) {
-        String contentToWrite = "レシピの内容"; 
+        // レシピ名と材料をカンマ区切りで1行にまとめる
+        String contentToWrite = recipeName + "," + ingredients;
         //ファイルの書き込み
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(contentToWrite);
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        //ファイルの読み込み
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath,true))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
         }
     }
 }

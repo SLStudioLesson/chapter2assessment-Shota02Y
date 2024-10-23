@@ -2,6 +2,7 @@ package ui;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -72,7 +73,6 @@ public class RecipeUI {
             System.out.println("No recipes available.");
             return;
         }
-    
         // レシピデータの表示
         System.out.println("Recipes:");
         System.out.println("-----------------------------------");
@@ -103,17 +103,17 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void addNewRecipe() throws IOException {
-        String recipeName = "";
-        String contentToWrite = "レシピの内容";
         //レシピ名を入力
         System.out.print("Enter recipe name: ");
-        String recipe = reader.readLine();
+        String recipeName = reader.readLine();
         //材料を入力
         System.out.print("Enter main ingredients (comma separated): ");
         String ingredients = reader.readLine();
 
+        // RecipeFileHandler内のaddRecipeメソッドで、レシピ名と材料をファイルに追加する
         fileHandler.addRecipe(recipeName, ingredients);
         System.out.println("Recipe added successfully.");
+    
     }
 
     /**
