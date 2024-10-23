@@ -80,7 +80,7 @@ public class RecipeUI {
             // レシピを整形して表示
             String[] pairs = data.asplit(",");
             String recipeName = parts[0].recipe(); // レシピ名
-            String ingredients = parts[1];
+            String ingredients = parts[1];//材料
             System.out.println(recipe);
             System.out.println("-----------------------------------");
         }
@@ -93,10 +93,12 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void addNewRecipe() throws IOException {
+        //レシピ名を入力
         System.out.print("Enter recipe name: ");
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-
+        String recipe = reader.readLine();
+        //材料を入力
         System.out.print("Enter main ingredients (comma separated): ");
+        String ingredients = reader.readLine();;
 
     }
 
@@ -107,8 +109,9 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void searchRecipe() throws IOException {
-        String recipe = "";
-        String ingredients = "";
+        
+
+        
     }
 
 }
