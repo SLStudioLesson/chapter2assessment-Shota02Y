@@ -29,14 +29,15 @@ public class RecipeFileHandler {
         ArrayList<String> recipes = new ArrayList<>();
         //ファイルの読み込み
             try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
+                String line;//1行単位
+                while ((line = reader.readLine()) != null) {//1行ずつ
+                    recipes.add(line);
                 }
             //IOExceptionが発生したとき
             }catch (IOException e) {
             System.out.println("Error reading file:" + e.getMessage());
         }
+        //読み込んだレシピを返す
         return recipes;
     }
 
@@ -51,6 +52,7 @@ public class RecipeFileHandler {
      */
      //
     public void addRecipe(String recipeName, String ingredients) {
+        String contentToWrite = "レシピの内容"; 
         //ファイルの書き込み
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(contentToWrite);
